@@ -6,35 +6,36 @@ import br.edu.ifrn.pds.pratica.negocio.dominio.Conta;
 
 public class FachadaConta implements IFachada {
 
-	private ControladorConta controlador;
-	
-	public FachadaConta() {
-		this.controlador = new ControladorConta();
-	}
-	
-	@Override
-	public void inserirConta(Conta conta) {
-		this.controlador.inserirConta(conta);
-		
-	}
-	@Override
-	public void alterarConta(Conta conta) {
-		this.controlador.alterarConta(conta);
-	}
+    private ControladorConta controlador;
 
-	@Override
-	public void removerConta(String numero) {
-		this.controlador.removerConta(numero);
-	}
+    public FachadaConta() {
+        this.controlador = new ControladorConta();
+    }
 
-	@Override
-	public Conta buscarConta(String numero) {
-		return this.controlador.buscarConta(numero);
-	}
+    @Override
+    public boolean inserirConta(Conta conta) {
+        return this.controlador.inserirConta(conta);
 
-	@Override
-	public List<Conta> buscarTodos() {
-		return this.controlador.buscarTodos();
-	}
+    }
+
+    @Override
+    public boolean alterarConta(Conta conta) {
+        return this.controlador.alterarConta(conta);
+    }
+
+    @Override
+    public boolean removerConta(String numero) {
+        return this.controlador.removerConta(numero);
+    }
+
+    @Override
+    public Conta buscarConta(String numero) {
+        return this.controlador.buscarConta(numero);
+    }
+
+    @Override
+    public List<Conta> buscarTodos() {
+        return this.controlador.buscarTodos();
+    }
 
 }

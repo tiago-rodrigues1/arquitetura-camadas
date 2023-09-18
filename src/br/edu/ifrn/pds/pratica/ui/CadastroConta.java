@@ -7,6 +7,7 @@ package br.edu.ifrn.pds.pratica.ui;
 import br.edu.ifrn.pds.pratica.negocio.FachadaConta;
 import br.edu.ifrn.pds.pratica.negocio.dominio.Conta;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -253,10 +254,16 @@ public class CadastroConta extends javax.swing.JFrame {
         boolean isContaCadastrada = fachadaConta.buscarConta(numero) != null;
         
         if (isContaCadastrada) {
-            jtaListaContas.setText("Conta já cadastrada");
+            JOptionPane.showMessageDialog(rootPane, "Essa conta já está cadastrada");
         } else {
             Conta objConta = new Conta(agencia, numero, titular, saldo);
-            fachadaConta.inserirConta(objConta);
+            boolean response = fachadaConta.inserirConta(objConta);
+            
+            if (response) {
+                JOptionPane.showMessageDialog(rootPane, "Conta cadastrada com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Não foi possível cadastrar sua conta");
+            }
         }
     }//GEN-LAST:event_jbtnSalvarActionPerformed
     
@@ -275,7 +282,7 @@ public class CadastroConta extends javax.swing.JFrame {
              
              fachadaConta.alterarConta(conta);
         } else {
-            jtaListaContas.setText("Conta não cadastrada ainda");
+            JOptionPane.showMessageDialog(rootPane, "Conta não cadastrada ainda");
         }
     }//GEN-LAST:event_jbtnEditarActionPerformed
 
@@ -298,10 +305,16 @@ public class CadastroConta extends javax.swing.JFrame {
         String numero = jtfNumero.getText();
         
         if (numero.isEmpty()) {
-            jtaListaContas.setText("O número da conta precisa ser informado");
+            JOptionPane.showMessageDialog(rootPane, "O número da conta precisa ser informado");
         } else {
             FachadaConta fachadaConta = new FachadaConta();
-            fachadaConta.removerConta(numero);
+            boolean response = fachadaConta.removerConta(numero);
+            
+            if (response) {
+                JOptionPane.showMessageDialog(rootPane, "Conta removida com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Não foi possível remover esta conta");
+            }
             
             renderListarContas();
         }
