@@ -6,6 +6,7 @@ package br.edu.ifrn.pds.pratica.ui;
 
 import br.edu.ifrn.pds.pratica.negocio.FachadaConta;
 import br.edu.ifrn.pds.pratica.negocio.dominio.Conta;
+import java.util.List;
 
 /**
  *
@@ -40,6 +41,11 @@ public class CadastroConta extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jtfSaldo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtaListaContas = new javax.swing.JTextArea();
+        jbtnEditar = new javax.swing.JButton();
+        jbtnListar1 = new javax.swing.JButton();
+        jbtnRemover = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,16 +105,56 @@ public class CadastroConta extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 76, 41));
         jLabel5.setText("<INFOBANK />");
 
+        jtaListaContas.setColumns(20);
+        jtaListaContas.setRows(5);
+        jScrollPane1.setViewportView(jtaListaContas);
+
+        jbtnEditar.setBackground(new java.awt.Color(255, 76, 41));
+        jbtnEditar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jbtnEditar.setForeground(new java.awt.Color(44, 57, 75));
+        jbtnEditar.setText("Editar");
+        jbtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnEditarActionPerformed(evt);
+            }
+        });
+
+        jbtnListar1.setBackground(new java.awt.Color(255, 76, 41));
+        jbtnListar1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jbtnListar1.setForeground(new java.awt.Color(44, 57, 75));
+        jbtnListar1.setText("Listar");
+        jbtnListar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnListar1ActionPerformed(evt);
+            }
+        });
+
+        jbtnRemover.setBackground(new java.awt.Color(255, 76, 41));
+        jbtnRemover.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jbtnRemover.setForeground(new java.awt.Color(44, 57, 75));
+        jbtnRemover.setText("Remover");
+        jbtnRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnRemoverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jbtnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jbtnListar1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(jbtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbtnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtnSalvar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jtfAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -116,14 +162,15 @@ public class CadastroConta extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jtfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jtfTitular, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jtfSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jtfSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(0, 35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -153,7 +200,14 @@ public class CadastroConta extends javax.swing.JFrame {
                         .addComponent(jtfSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(44, 44, 44)
                 .addComponent(jbtnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnListar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -164,7 +218,9 @@ public class CadastroConta extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -191,12 +247,65 @@ public class CadastroConta extends javax.swing.JFrame {
         String numero = jtfNumero.getText();
         String titular = jtfTitular.getText();
         double saldo = Double.parseDouble(jtfSaldo.getText());
-        
-        Conta objConta = new Conta(agencia, numero, titular, saldo);
-        
+
         FachadaConta fachadaConta = new FachadaConta();
-        fachadaConta.inserirConta(objConta);
+        
+        boolean isContaCadastrada = fachadaConta.buscarConta(numero) != null;
+        
+        if (isContaCadastrada) {
+            jtaListaContas.setText("Conta já cadastrada");
+        } else {
+            Conta objConta = new Conta(agencia, numero, titular, saldo);
+            fachadaConta.inserirConta(objConta);
+        }
     }//GEN-LAST:event_jbtnSalvarActionPerformed
+    
+    private void jbtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEditarActionPerformed
+        FachadaConta fachadaConta = new FachadaConta();
+        
+        String numero = jtfNumero.getText();
+        String titular = jtfTitular.getText();
+        double saldo = Double.parseDouble(jtfSaldo.getText());
+        
+        Conta conta = fachadaConta.buscarConta(numero);
+        
+        if (conta != null) {
+             conta.setSaldo(saldo);
+             conta.setTitular(titular);
+             
+             fachadaConta.alterarConta(conta);
+        } else {
+            jtaListaContas.setText("Conta não cadastrada ainda");
+        }
+    }//GEN-LAST:event_jbtnEditarActionPerformed
+
+    private void renderListarContas() {
+        jtaListaContas.setText("");
+        FachadaConta fachadaConta = new FachadaConta();
+        List<Conta> contas = fachadaConta.buscarTodos();
+        
+        for (Conta conta: contas) {
+            jtaListaContas.append(conta.toString());
+            jtaListaContas.append("\n");
+        }
+    }
+    
+    private void jbtnListar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnListar1ActionPerformed
+        renderListarContas();
+    }//GEN-LAST:event_jbtnListar1ActionPerformed
+    
+    private void jbtnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRemoverActionPerformed
+        String numero = jtfNumero.getText();
+        
+        if (numero.isEmpty()) {
+            jtaListaContas.setText("O número da conta precisa ser informado");
+        } else {
+            FachadaConta fachadaConta = new FachadaConta();
+            fachadaConta.removerConta(numero);
+            
+            renderListarContas();
+        }
+    }//GEN-LAST:event_jbtnRemoverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,7 +349,12 @@ public class CadastroConta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbtnEditar;
+    private javax.swing.JButton jbtnListar1;
+    private javax.swing.JButton jbtnRemover;
     private javax.swing.JButton jbtnSalvar;
+    private javax.swing.JTextArea jtaListaContas;
     private javax.swing.JTextField jtfAgencia;
     private javax.swing.JTextField jtfNumero;
     private javax.swing.JTextField jtfSaldo;

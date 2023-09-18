@@ -1,15 +1,16 @@
 package br.edu.ifrn.pds.pratica.negocio.dominio;
 
 public class Conta {
-	
-	private String agencia;
-	private String numero;
-	private String titular;
-	private double saldo;
+
+    private String agencia;
+    private String numero;
+    private String titular;
+    private double saldo;
+
     public Conta() {
-        
+
     }
-        
+
     public Conta(String agencia, String numero, String titular, double saldo) {
         this.agencia = agencia;
         this.numero = numero;
@@ -17,8 +18,6 @@ public class Conta {
         this.saldo = saldo;
     }
 
-        
-        
     public String getAgencia() {
         return agencia;
     }
@@ -50,23 +49,29 @@ public class Conta {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-	
-        
-        
-	
 
-    
+    @Override
+    public boolean equals(Object obj) {
 
-	@Override
-	public boolean equals(Object obj) {
-		
-		if (obj != null && obj instanceof Conta) {
-			
-			Conta outra = (Conta) obj;
-			
-			return this.numero.equals(outra.getNumero());
-		}
-		
-		return false;
-	}
+        if (obj != null && obj instanceof Conta) {
+
+            Conta outra = (Conta) obj;
+
+            return this.numero.equals(outra.getNumero());
+        }
+
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Conta{");
+        sb.append("agencia=").append(agencia);
+        sb.append(", numero=").append(numero);
+        sb.append(", titular=").append(titular);
+        sb.append(", saldo=").append(saldo);
+        sb.append('}');
+        return sb.toString();
+    }
 }
